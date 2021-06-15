@@ -1,34 +1,39 @@
 package kawanpeter.com.github.interfaces.figuras.classes;
 
-public class Quadrado implements FiguraGeometrica {
-	
-	private Float l1;
-	private Float l2;
-	
-	public Float getL1() {
-		return l1;
-	}
-	public void setL1(Float l1) {
-		this.l1 = l1;
-	}
-	public Float getL2() {
-		return l2;
-	}
-	public void setL2(Float l2) {
-		this.l2 = l2;
+import kawanpeter.com.github.interfaces.figuras.classes.FiguraGeometrica;
+
+public class Quadrado extends Quadrilatero implements FiguraGeometrica {
+
+	public Quadrado(Float base, Float altura) {
+		setBase(base);
+		setAltura(altura);
 	}
 	
 	@Override
-	public Float CalcularArea() {
-		Float area = l1 * l1;
-		return area;
+	public void setBase(Float base) {
+		if (getAltura() != null && !getAltura().equals(base)) {
+			throw new RuntimeException("A base não pode ser diferente a altura!");
+		}
+		this.base = base;
 	}
+	
 	@Override
-	public Float CalcularPerimetro() {
-		Float Perimetro = this.l1 * 4 ;
-		return Perimetro;
+	public void setAltura(Float altura) {
+		if (getBase() != null && !getBase().equals(altura)) {
+			throw new RuntimeException("A base não pode ser diferente a altura!");
+		}
+		this.altura = altura;
 	}
-	
-	
-	
+
+	@Override
+	public Float calcularArea() {
+		return getBase() * getAltura();
+	}
+
+	@Override
+	public Float calcularPerimetro() {
+		return (getBase() + getAltura()) * 2;
+	}
+
 }
+
